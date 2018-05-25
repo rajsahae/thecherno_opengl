@@ -5,10 +5,11 @@ FRAMEWORKS=-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVi
 
 CFLAGS=-std=c++11
 CFLAGS+=-I$(current_directory)
-CFLAGS+=-I$(current_directory)/external/glfw-3.1.2/include
-CFLAGS+=-I$(current_directory)/external/glew-1.13.0/include
+CFLAGS+=-I$(current_directory)/../external/glfw-3.1.2/include
+CFLAGS+=-I$(current_directory)/../external/glew-1.13.0/include
+# CFLAGS+=-Wno-int-to-void-pointer-cast
 
-LDFLAGS=-L$(current_directory)/lib
+LDFLAGS=-L$(current_directory)/../lib
 LDFLAGS+=-lglfw3
 LDFLAGS+=-lGLEW
 
@@ -19,11 +20,22 @@ OBJECTS=$(patsubst %.cpp, %.o, $(SOURCES))
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $^
 
-app: $(OBJECTS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(FRAMEWORKS) -o app $(OBJECTS)
+default: debug
 
-all: app
+app: $(OBJECTS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(FRAMEWORKS) -o $@ $(OBJECTS)
+
+# Define debug and -g enables debug symbols
+debug: CFLAGS+=-DDEBUG -g
+debug: app
+
+release: app
 
 .PHONY: clean
 clean:
 	rm -f *.o app
+
+.PHONY: debugger
+debugger: debug
+	PATH=/usr/bin /usr/bin/lldb ./app
+

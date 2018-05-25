@@ -11,6 +11,7 @@
 
 #include "Renderer.h"
 #include "VertexBuffer.h"
+#include "VertexArray.h"
 #include "IndexBuffer.h"
 
 struct ShaderProgramSource
@@ -154,8 +155,8 @@ int main( void )
 
     float positions[] = {
         -0.5f, -0.5f, // 0
-        0.5f, -0.5f, // 1
-        0.5f,  0.5f, // 2
+         0.5f, -0.5f, // 1
+         0.5f,  0.5f, // 2
         -0.5f,  0.5f  // 3
     };
 
@@ -164,21 +165,14 @@ int main( void )
         2, 3, 0
     };
 
-    // Have to set VAO before binding attrbutes
-    unsigned int vao;
-    GLCall( glGenVertexArrays(1, &vao) );
-    GLCall( glBindVertexArray(vao) );
-
-    // Create vertex buffer and copy data
+    VertexArray va;
     VertexBuffer vb(positions, 4 * 2 * sizeof(float));
-
-    // define vertex layout
-    // This links the attrib pointer wih the buffer at index 0 in the vertex array object
-    GLCall( glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0) );
-    GLCall( glEnableVertexAttribArray(0) );
-
-    // Create index buffer
     IndexBuffer ib(indices, 6);
+
+    VertexBufferLayout layout;
+    layout.AddFloat(2);
+
+    va.AddBuffer(vb, layout);
 
     ShaderProgramSource source = ParseShader("res/shaders/Basic.shader");
 
@@ -207,10 +201,8 @@ int main( void )
         GLCall( glUseProgram(shader) );
         GLCall( glUniform4f(u_Color, red, 0.3, 0.8, 1.0) );
 
-        // Instead of binding vertex buffer, attrib pointer, just bind Vertex Array Object
-        GLCall( glBindVertexArray(vao) );
-
         // Bind index buffer
+        va.Bind();
         ib.Bind();
 
         // Draw
@@ -230,7 +222,6 @@ int main( void )
             glfwWindowShouldClose(window) == 0 );
 
     // Cleanup VBO
-    GLCall( glDeleteVertexArrays(1, &vao) );
     GLCall( glDeleteProgram(shader) );
 
     // Close OpenGL window and terminate GLFW
