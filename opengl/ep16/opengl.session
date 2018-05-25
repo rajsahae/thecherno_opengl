@@ -2,7 +2,7 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/dev/the-cherno/opengl/ep15
+cd ~/dev/the-cherno/opengl/ep16
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -439,7 +439,7 @@ exe s:l
 normal! zt
 1
 normal! 0
-lcd ~/dev/the-cherno/opengl/ep15
+lcd ~/dev/the-cherno/opengl/ep16
 tabnext 4
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
