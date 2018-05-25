@@ -29,12 +29,6 @@ class VertexBufferLayout
         unsigned int m_Stride;
         std::vector<VertexBufferElement> m_Elements;
 
-        void Push(unsigned int type, unsigned int count, unsigned char normalized)
-        {
-            m_Elements.push_back({type, count, normalized});
-            m_Stride += count * VertexBufferElement::GetSizeOfType(type);
-        };
-
     public:
         VertexBufferLayout() :
             m_Stride(0) { }
@@ -45,4 +39,11 @@ class VertexBufferLayout
 
         inline const std::vector<VertexBufferElement> GetElements() const { return m_Elements; };
         inline unsigned int GetStride() const { return m_Stride; };
+
+    private:
+        void Push(unsigned int type, unsigned int count, unsigned char normalized)
+        {
+            m_Elements.push_back({type, count, normalized});
+            m_Stride += count * VertexBufferElement::GetSizeOfType(type);
+        };
 };
