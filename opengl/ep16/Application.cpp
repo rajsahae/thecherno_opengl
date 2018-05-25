@@ -6,11 +6,11 @@
 
 #include <iostream>
 
-#include "Renderer.h"
 #include "VertexBuffer.h"
 #include "VertexArray.h"
 #include "IndexBuffer.h"
 #include "Shader.h"
+#include "Renderer.h"
 
 GLFWwindow* InitWindow()
 {
@@ -56,14 +56,6 @@ GLFWwindow* InitWindow()
     return window;
 }
 
-void ClearAll()
-{
-    GLCall( glUseProgram(0) );
-    GLCall( glBindBuffer(GL_ARRAY_BUFFER, 0) );
-    GLCall( glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0) );
-    GLCall( glBindVertexArray(0) );
-}
-
 int main( void )
 {
     GLFWwindow* window = InitWindow();
@@ -98,22 +90,15 @@ int main( void )
         float red = 0.0f;
         float step = 0.05f;
 
-        ClearAll();
+        Renderer renderer;
 
         do {
-            // Clear the screen
-            GLCall( glClear( GL_COLOR_BUFFER_BIT );
+            renderer.Clear();
 
-            // set shader and set uniform color
             shader.Bind();
             shader.SetUniform4f("u_Color", red, 0.3, 0.8, 1.0);
 
-            // Bind index buffer
-            va.Bind();
-            ib.Bind();
-
-            // Draw
-            GLCall( glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr)) );
+            renderer.Draw(va, ib, shader);
 
             // Swap buffers
             glfwSwapBuffers(window);

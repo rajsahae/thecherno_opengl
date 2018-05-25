@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <GL/glew.h>
-#include "Renderer.h"
+#include "Debug.h"
 
 struct VertexBufferElement
 {
@@ -43,7 +43,8 @@ class VertexBufferLayout
     private:
         void Push(unsigned int type, unsigned int count, unsigned char normalized)
         {
-            m_Elements.push_back({type, count, normalized});
+            struct VertexBufferElement vbe = {type, count, normalized};
+            m_Elements.push_back(vbe);
             m_Stride += count * VertexBufferElement::GetSizeOfType(type);
         };
 };
