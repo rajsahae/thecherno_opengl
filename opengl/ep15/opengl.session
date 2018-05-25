@@ -7,19 +7,24 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 Application.cpp
+badd +119 Application.cpp
 badd +1 IndexBuffer.cpp
 badd +1 IndexBuffer.h
-badd +0 Makefile
+badd +2 Makefile
 badd +1 Renderer.cpp
 badd +1 Renderer.h
 badd +2 VertexArray.cpp
 badd +1 VertexArray.h
 badd +1 VertexBuffer.cpp
 badd +1 VertexBuffer.h
-badd +0 VertexBufferLayout.h
+badd +1 VertexBufferLayout.h
 badd +1 res
-badd +0 res/shaders/Basic.shader
+badd +1 res/shaders/Basic.shader
+badd +37 Shader.h
+badd +47 Shader.cpp
+badd +5 term://.//9314:/bin/zsh
+badd +19 term://.//9366:/bin/zsh
+badd +0 term://.//9570:/bin/zsh
 argglobal
 silent! argdel *
 $argadd Application.cpp
@@ -49,12 +54,93 @@ setlocal fdl=3
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 12 - ((11 * winheight(0) + 28) / 57)
+16
+normal! zo
+68
+normal! zo
+86
+normal! zo
+let s:l = 107 - ((27 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-12
-normal! 0
+107
+normal! 041|
+tabedit Shader.h
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 29 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+argglobal
+if bufexists('Shader.h') | buffer Shader.h | else | edit Shader.h | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 28 - ((24 * winheight(0) + 14) / 29)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+28
+normal! 063|
+wincmd w
+argglobal
+if bufexists('Shader.cpp') | buffer Shader.cpp | else | edit Shader.cpp | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+38
+normal! zo
+58
+normal! zo
+65
+normal! zo
+63
+normal! zo
+71
+normal! zo
+80
+normal! zo
+90
+normal! zo
+120
+normal! zo
+67
+normal! zo
+75
+normal! zo
+77
+normal! zo
+84
+normal! zo
+94
+normal! zo
+124
+normal! zo
+let s:l = 51 - ((17 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+51
+normal! 022|
+wincmd w
+exe '1resize ' . ((&lines * 29 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
 tabedit IndexBuffer.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -77,11 +163,11 @@ setlocal fdl=2
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 14) / 28)
+let s:l = 8 - ((7 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+8
 normal! 0
 wincmd w
 argglobal
@@ -105,9 +191,15 @@ exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
 tabedit Makefile
 set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
 set nosplitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 36 + 30) / 61)
+exe '2resize ' . ((&lines * 20 + 30) / 61)
 argglobal
 4argu
 setlocal fdm=syntax
@@ -118,12 +210,34 @@ setlocal fdl=2
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 2 - ((1 * winheight(0) + 28) / 57)
+let s:l = 5 - ((4 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-2
+5
 normal! 0
+wincmd w
+argglobal
+4argu
+if bufexists('term://.//9570:/bin/zsh') | buffer term://.//9570:/bin/zsh | else | edit term://.//9570:/bin/zsh | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 902 - ((19 * winheight(0) + 10) / 20)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+902
+normal! 038|
+wincmd w
+2wincmd w
+exe '1resize ' . ((&lines * 36 + 30) / 61)
+exe '2resize ' . ((&lines * 20 + 30) / 61)
 tabedit Renderer.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -134,7 +248,9 @@ set nosplitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 129 + 67) / 135)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 129 + 67) / 135)
 argglobal
 5argu
 if bufexists('Renderer.h') | buffer Renderer.h | else | edit Renderer.h | endif
@@ -171,7 +287,9 @@ normal! zt
 normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 129 + 67) / 135)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 129 + 67) / 135)
 tabedit VertexArray.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -182,7 +300,9 @@ set nosplitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 129 + 67) / 135)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 129 + 67) / 135)
 argglobal
 7argu
 if bufexists('VertexArray.h') | buffer VertexArray.h | else | edit VertexArray.h | endif
@@ -219,7 +339,9 @@ normal! zt
 normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 129 + 67) / 135)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 129 + 67) / 135)
 tabedit VertexBuffer.h
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -230,7 +352,9 @@ set nosplitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 129 + 67) / 135)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 129 + 67) / 135)
 argglobal
 9argu
 if bufexists('VertexBuffer.h') | buffer VertexBuffer.h | else | edit VertexBuffer.h | endif
@@ -242,12 +366,12 @@ setlocal fdl=2
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 14) / 28)
+let s:l = 9 - ((8 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+9
+normal! 09|
 wincmd w
 argglobal
 9argu
@@ -267,7 +391,9 @@ normal! zt
 normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 129 + 67) / 135)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 129 + 67) / 135)
 tabedit VertexBufferLayout.h
 set splitbelow splitright
 set nosplitright
@@ -279,16 +405,18 @@ setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=2
+setlocal fdl=3
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 3 - ((2 * winheight(0) + 28) / 57)
+27
+normal! zo
+let s:l = 17 - ((16 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-3
-normal! 0
+17
+normal! 09|
 tabedit res/shaders/Basic.shader
 set splitbelow splitright
 set nosplitright
@@ -312,7 +440,7 @@ normal! zt
 1
 normal! 0
 lcd ~/dev/the-cherno/opengl/ep15
-tabnext 1
+tabnext 4
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
