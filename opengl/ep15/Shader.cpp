@@ -34,19 +34,29 @@ void Shader::Unbind() const
     GLCall( glUseProgram(0) );
 }
 
-unsigned int Shader::GetUniformLocation(const std::string& name)
+int Shader::GetUniformLocation(const std::string& name)
 {
-    GLCall( unsigned int location = glGetUniformLocation(m_RendererID, name.c_str()) );
-    ASSERT(location != -1);
+    if (m_UniformLocationCache.find(name) != m_UniformLocationCache.end())
+        return m_UniformLocationCache[name];
+
+    GLCall( int location = glGetUniformLocation(m_RendererID, name.c_str()) );
+    if (location == -1)
+        std::cout << "No active uniform variable with name " << name << " found" << std::endl;
+
+    m_UniformLocationCache[name] = location;
 
     return location;
 }
 
 void Shader::SetUniform4f(const std::string& name, float f0, float f1, float f2, float f3)
 {
-    unsigned int uniform = GetUniformLocation(name);
-    GLCall( glUniform4f(uniform, f0, f1, f2, f3) );
+    GLCall( glUniform4f(GetUniformLocation(name), f0, f1, f2, f3) );
 }
+
+enum ShaderType
+{
+    NONE = -1, VERTEX = 0, FRAGMENT = 1
+};
 
 struct ShaderProgramSource Shader::ParseShader(const std::string& filepath)
 {

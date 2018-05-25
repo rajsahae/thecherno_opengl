@@ -82,50 +82,52 @@ int main( void )
         2, 3, 0
     };
 
-    VertexArray va;
-    VertexBuffer vb(positions, 4 * 2 * sizeof(float));
-    IndexBuffer ib(indices, 6);
+    {
+        VertexArray va;
+        VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+        IndexBuffer ib(indices, 6);
 
-    VertexBufferLayout layout;
-    layout.AddFloat(2);
+        VertexBufferLayout layout;
+        layout.AddFloat(2);
 
-    va.AddBuffer(vb, layout);
+        va.AddBuffer(vb, layout);
 
-    Shader shader("res/shaders/Basic.shader");
-    shader.Bind();
-
-    float red = 0.0f;
-    float step = 0.05f;
-
-    ClearAll();
-
-    do {
-        // Clear the screen
-        GLCall( glClear( GL_COLOR_BUFFER_BIT );
-
-        // set shader and set uniform color
+        Shader shader("res/shaders/Basic.shader");
         shader.Bind();
-        shader.SetUniform4f("u_Color", red, 0.3, 0.8, 1.0);
 
-        // Bind index buffer
-        va.Bind();
-        ib.Bind();
+        float red = 0.0f;
+        float step = 0.05f;
 
-        // Draw
-        GLCall( glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr)) );
+        ClearAll();
 
-        // Swap buffers
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+        do {
+            // Clear the screen
+            GLCall( glClear( GL_COLOR_BUFFER_BIT );
 
-        // increment red
-        if (red < 0.0f || red > 1.0f)
-            step *= -1.0;
-        red += step;
+            // set shader and set uniform color
+            shader.Bind();
+            shader.SetUniform4f("u_Color", red, 0.3, 0.8, 1.0);
 
-    } // Check if the ESC key was pressed or the window was closed
-    while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
-            glfwWindowShouldClose(window) == 0 );
+            // Bind index buffer
+            va.Bind();
+            ib.Bind();
+
+            // Draw
+            GLCall( glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr)) );
+
+            // Swap buffers
+            glfwSwapBuffers(window);
+            glfwPollEvents();
+
+            // increment red
+            if (red < 0.0f || red > 1.0f)
+                step *= -1.0;
+            red += step;
+
+        } // Check if the ESC key was pressed or the window was closed
+        while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
+                glfwWindowShouldClose(window) == 0 );
+    }
 
     // Close OpenGL window and terminate GLFW
     glfwTerminate();
