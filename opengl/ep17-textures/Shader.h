@@ -24,8 +24,9 @@ class Shader
         void Unbind() const;
 
         // Set uniforms
-        void SetUniform4f(const std::string& name, float f0, float f1, float f2, float f3);
+        void SetUniform1i(const std::string& name, int value);
         void SetUniform1f(const std::string& name, float value);
+        void SetUniform4f(const std::string& name, float f0, float f1, float f2, float f3);
 
     private:
         int GetUniformLocation(const std::string& name);

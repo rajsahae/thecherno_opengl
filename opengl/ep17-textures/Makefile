@@ -7,13 +7,17 @@ CFLAGS=-std=c++11
 CFLAGS+=-I$(current_directory)
 CFLAGS+=-I$(current_directory)/../external/glfw-3.1.2/include
 CFLAGS+=-I$(current_directory)/../external/glew-1.13.0/include
-# CFLAGS+=-Wno-int-to-void-pointer-cast
+
+VENDOR_DIRS=$(wildcard $(current_directory)/vendor/*)
+VENDOR_INCLUDES=$(patsubst %, -I%, $(VENDOR_DIRS))
+CFLAGS+=$(VENDOR_INCLUDES)
 
 LDFLAGS=-L$(current_directory)/../lib
 LDFLAGS+=-lglfw3
 LDFLAGS+=-lGLEW
 
 SOURCES=$(wildcard *.cpp)
+SOURCES+=$(wildcard vendor/*/*.cpp)
 OBJECTS=$(patsubst %.cpp, %.o, $(SOURCES))
 
 

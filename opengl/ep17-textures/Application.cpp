@@ -11,6 +11,7 @@
 #include "IndexBuffer.h"
 #include "Shader.h"
 #include "Renderer.h"
+#include "Texture.h"
 
 GLFWwindow* InitWindow()
 {
@@ -63,10 +64,10 @@ int main( void )
         return -1;
 
     float positions[] = {
-        -0.5f, -0.5f, // 0
-         0.5f, -0.5f, // 1
-         0.5f,  0.5f, // 2
-        -0.5f,  0.5f  // 3
+        -0.5f, -0.5f, 0.0f, 0.0f, // 0
+         0.5f, -0.5f, 1.0f, 0.0f, // 1
+         0.5f,  0.5f, 1.0f, 1.0f, // 2
+        -0.5f,  0.5f, 0.0f, 1.0f  // 3
     };
 
     unsigned int indices[] = {
@@ -74,12 +75,16 @@ int main( void )
         2, 3, 0
     };
 
+    GLCall( glEnable(GL_BLEND) );
+    GLCall( glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) );
+
     {
         VertexArray va;
-        VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+        VertexBuffer vb(positions, 4 * 4 * sizeof(float));
         IndexBuffer ib(indices, 6);
 
         VertexBufferLayout layout;
+        layout.AddFloat(2);
         layout.AddFloat(2);
 
         va.AddBuffer(vb, layout);
@@ -87,28 +92,19 @@ int main( void )
         Shader shader("res/shaders/Basic.shader");
         shader.Bind();
 
-        float red = 0.0f;
-        float step = 0.05f;
+        Texture texture("res/textures/phone.png");
+        texture.Bind();
+        shader.SetUniform1i("u_Texture", 0);
 
         Renderer renderer;
 
         do {
             renderer.Clear();
-
-            shader.Bind();
-            shader.SetUniform4f("u_Color", red, 0.3, 0.8, 1.0);
-
             renderer.Draw(va, ib, shader);
 
             // Swap buffers
             glfwSwapBuffers(window);
             glfwPollEvents();
-
-            // increment red
-            if (red < 0.0f || red > 1.0f)
-                step *= -1.0;
-            red += step;
-
         } // Check if the ESC key was pressed or the window was closed
         while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
                 glfwWindowShouldClose(window) == 0 );
