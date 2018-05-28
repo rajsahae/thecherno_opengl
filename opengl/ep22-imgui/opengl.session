@@ -1,0 +1,533 @@
+let SessionLoad = 1
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/dev/the-cherno/opengl/ep22-imgui
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +119 Application.cpp
+badd +1 IndexBuffer.cpp
+badd +1 IndexBuffer.h
+badd +5 Makefile
+badd +1 Renderer.cpp
+badd +3 Renderer.h
+badd +2 VertexArray.cpp
+badd +1 VertexArray.h
+badd +1 VertexBuffer.cpp
+badd +1 VertexBuffer.h
+badd +1 VertexBufferLayout.h
+badd +1 res/shaders/Basic.shader
+badd +1 Shader.h
+badd +47 Shader.cpp
+badd +0 term://.//15541:/bin/zsh
+badd +1 ~/dev/the-cherno/opengl/ep22-imgui
+badd +855 ~/dev/the-cherno/opengl/external/glew-1.13.0/include/GL/glew.h
+badd +12 vendor/stb_image/stb_image.h
+badd +0 vendor/stb_image/stb_image.cpp
+badd +1 Texture.cpp
+badd +1 Texture.h
+argglobal
+silent! argdel *
+$argadd Application.cpp
+$argadd IndexBuffer.cpp
+$argadd IndexBuffer.h
+$argadd Makefile
+$argadd Renderer.cpp
+$argadd Renderer.h
+$argadd VertexArray.cpp
+$argadd VertexArray.h
+$argadd VertexBuffer.cpp
+$argadd VertexBuffer.h
+$argadd VertexBufferLayout.h
+$argadd res
+set stal=2
+edit Application.cpp
+set splitbelow splitright
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=3
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+17
+normal! zo
+61
+normal! zo
+81
+normal! zo
+let s:l = 11 - ((10 * winheight(0) + 28) / 57)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+11
+normal! 0
+tabedit Shader.h
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+argglobal
+if bufexists('Shader.h') | buffer Shader.h | else | edit Shader.h | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 34 - ((24 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+34
+normal! 036|
+wincmd w
+argglobal
+if bufexists('Shader.cpp') | buffer Shader.cpp | else | edit Shader.cpp | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+72
+normal! zo
+80
+normal! zo
+82
+normal! zo
+89
+normal! zo
+99
+normal! zo
+129
+normal! zo
+let s:l = 42 - ((8 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+42
+normal! 013|
+wincmd w
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+tabedit res/shaders/Basic.shader
+set splitbelow splitright
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+argglobal
+12argu
+if bufexists('res/shaders/Basic.shader') | buffer res/shaders/Basic.shader | else | edit res/shaders/Basic.shader | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 19 - ((18 * winheight(0) + 28) / 57)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+19
+normal! 0
+lcd ~/dev/the-cherno/opengl/ep22-imgui
+tabedit ~/dev/the-cherno/opengl/ep22-imgui/IndexBuffer.h
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+argglobal
+2argu
+if bufexists('~/dev/the-cherno/opengl/ep22-imgui/IndexBuffer.h') | buffer ~/dev/the-cherno/opengl/ep22-imgui/IndexBuffer.h | else | edit ~/dev/the-cherno/opengl/ep22-imgui/IndexBuffer.h | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 8 - ((7 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+8
+normal! 0
+wincmd w
+argglobal
+2argu
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+tabedit ~/dev/the-cherno/opengl/ep22-imgui/Renderer.h
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+argglobal
+5argu
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 9 - ((8 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+9
+normal! 0
+wincmd w
+argglobal
+5argu
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+tabedit ~/dev/the-cherno/opengl/ep22-imgui/VertexArray.h
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+argglobal
+7argu
+if bufexists('~/dev/the-cherno/opengl/ep22-imgui/VertexArray.h') | buffer ~/dev/the-cherno/opengl/ep22-imgui/VertexArray.h | else | edit ~/dev/the-cherno/opengl/ep22-imgui/VertexArray.h | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 04|
+wincmd w
+argglobal
+7argu
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 2 - ((1 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+2
+normal! 0
+wincmd w
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+tabedit ~/dev/the-cherno/opengl/ep22-imgui/VertexBuffer.h
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+argglobal
+9argu
+if bufexists('~/dev/the-cherno/opengl/ep22-imgui/VertexBuffer.h') | buffer ~/dev/the-cherno/opengl/ep22-imgui/VertexBuffer.h | else | edit ~/dev/the-cherno/opengl/ep22-imgui/VertexBuffer.h | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 9 - ((8 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+9
+normal! 09|
+wincmd w
+argglobal
+9argu
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+tabedit ~/dev/the-cherno/opengl/ep22-imgui/VertexBufferLayout.h
+set splitbelow splitright
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+argglobal
+11argu
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=3
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+27
+normal! zo
+let s:l = 17 - ((16 * winheight(0) + 28) / 57)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+17
+normal! 09|
+tabedit ~/dev/the-cherno/opengl/ep22-imgui/vendor/stb_image/stb_image.h
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 46 + 30) / 61)
+exe '2resize ' . ((&lines * 10 + 30) / 61)
+argglobal
+12argu
+if bufexists('~/dev/the-cherno/opengl/ep22-imgui/vendor/stb_image/stb_image.h') | buffer ~/dev/the-cherno/opengl/ep22-imgui/vendor/stb_image/stb_image.h | else | edit ~/dev/the-cherno/opengl/ep22-imgui/vendor/stb_image/stb_image.h | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+326
+normal! zo
+let s:l = 365 - ((30 * winheight(0) + 23) / 46)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+365
+normal! 018|
+lcd ~/dev/the-cherno/opengl/ep22-imgui
+wincmd w
+argglobal
+12argu
+if bufexists('~/dev/the-cherno/opengl/ep22-imgui/vendor/stb_image/stb_image.cpp') | buffer ~/dev/the-cherno/opengl/ep22-imgui/vendor/stb_image/stb_image.cpp | else | edit ~/dev/the-cherno/opengl/ep22-imgui/vendor/stb_image/stb_image.cpp | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 2 - ((1 * winheight(0) + 5) / 10)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+2
+normal! 02|
+lcd ~/dev/the-cherno/opengl/ep22-imgui
+wincmd w
+exe '1resize ' . ((&lines * 46 + 30) / 61)
+exe '2resize ' . ((&lines * 10 + 30) / 61)
+tabedit ~/dev/the-cherno/opengl/ep22-imgui/Texture.h
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+argglobal
+if bufexists('~/dev/the-cherno/opengl/ep22-imgui/Texture.h') | buffer ~/dev/the-cherno/opengl/ep22-imgui/Texture.h | else | edit ~/dev/the-cherno/opengl/ep22-imgui/Texture.h | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 12 - ((11 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+12
+normal! 0
+lcd ~/dev/the-cherno/opengl/ep22-imgui
+wincmd w
+argglobal
+if bufexists('~/dev/the-cherno/opengl/ep22-imgui/Texture.cpp') | buffer ~/dev/the-cherno/opengl/ep22-imgui/Texture.cpp | else | edit ~/dev/the-cherno/opengl/ep22-imgui/Texture.cpp | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=1
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 25 - ((24 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+25
+normal! 019|
+lcd ~/dev/the-cherno/opengl/ep22-imgui
+wincmd w
+exe '1resize ' . ((&lines * 28 + 30) / 61)
+exe '2resize ' . ((&lines * 28 + 30) / 61)
+tabedit ~/dev/the-cherno/opengl/ep22-imgui/Makefile
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+set nosplitright
+wincmd t
+set winminheight=1 winminwidth=1 winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 36 + 30) / 61)
+exe '2resize ' . ((&lines * 20 + 30) / 61)
+argglobal
+4argu
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 22 - ((21 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+22
+normal! 0
+wincmd w
+argglobal
+4argu
+if bufexists('term://.//15541:/bin/zsh') | buffer term://.//15541:/bin/zsh | else | edit term://.//15541:/bin/zsh | endif
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=2
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 2753 - ((17 * winheight(0) + 10) / 20)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+2753
+normal! 034|
+wincmd w
+2wincmd w
+exe '1resize ' . ((&lines * 36 + 30) / 61)
+exe '2resize ' . ((&lines * 20 + 30) / 61)
+tabnext 11
+set stal=1
+if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 winminheight=1 winminwidth=1 shortmess=atI
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :
