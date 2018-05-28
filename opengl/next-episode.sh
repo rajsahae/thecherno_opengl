@@ -10,4 +10,5 @@ latest_name=$(basename "$latest_path")
 next_name=$(basename "$next_path")
 
 cp -va "$latest_path" "$next_path"
-sed -i -e "s/$latest_name/$next_name/g" "$next_path/opengl.session"
+rm -f "$next_path/opengl.session"
+sed -e "s/$latest_name/$next_name/g" "$latest_path/opengl.session" > "$next_path/opengl.session"
