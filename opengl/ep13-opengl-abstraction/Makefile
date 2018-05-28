@@ -5,8 +5,7 @@ FRAMEWORKS=-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVi
 
 CFLAGS=-std=c++11
 CFLAGS+=-I$(current_directory)
-CFLAGS+=-I$(current_directory)/../external/glfw-3.1.2/include
-CFLAGS+=-I$(current_directory)/../external/glew-1.13.0/include
+CFLAGS+=-I$(current_directory)/../external
 
 LDFLAGS=-L$(current_directory)/../lib
 LDFLAGS+=-lglfw3
