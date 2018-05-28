@@ -13,6 +13,9 @@
 #include "Renderer.h"
 #include "Texture.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 GLFWwindow* InitWindow()
 {
     // Initialise GLFW
@@ -83,6 +86,8 @@ int main( void )
         VertexBuffer vb(positions, 4 * 4 * sizeof(float));
         IndexBuffer ib(indices, 6);
 
+        glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+
         VertexBufferLayout layout;
         layout.AddFloat(2);
         layout.AddFloat(2);
@@ -91,20 +96,35 @@ int main( void )
 
         Shader shader("res/shaders/Basic.shader");
         shader.Bind();
+        shader.SetUniform4f("u_Color", 0.0f, 0.3f, 0.8f, 1.0f);
+        shader.SetUniformMat4f("u_MVP", proj);
 
         Texture texture("res/textures/phone.png");
         texture.Bind();
         shader.SetUniform1i("u_Texture", 0);
 
+        float red = 0.0f;
+        float step = 0.05f;
+
         Renderer renderer;
 
         do {
             renderer.Clear();
+
+            shader.Bind();
+            shader.SetUniform4f("u_Color", red, 0.3, 0.8, 1.0);
+
             renderer.Draw(va, ib, shader);
 
             // Swap buffers
             glfwSwapBuffers(window);
             glfwPollEvents();
+
+            // increment red
+            if (red < 0.0f || red > 1.0f)
+                step *= -1.0;
+            red += step;
+
         } // Check if the ESC key was pressed or the window was closed
         while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
                 glfwWindowShouldClose(window) == 0 );
