@@ -2,7 +2,7 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/dev/the-cherno/opengl/ep18-blending
+cd ~/dev/the-cherno/opengl/ep19-math
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -22,7 +22,7 @@ badd +1 res/shaders/Basic.shader
 badd +1 Shader.h
 badd +47 Shader.cpp
 badd +0 term://.//15541:/bin/zsh
-badd +1 ~/dev/the-cherno/opengl/ep18-blending
+badd +1 ~/dev/the-cherno/opengl/ep19-math
 badd +855 ~/dev/the-cherno/opengl/external/glew-1.13.0/include/GL/glew.h
 badd +12 vendor/stb_image/stb_image.h
 badd +0 vendor/stb_image/stb_image.cpp
@@ -150,8 +150,8 @@ exe s:l
 normal! zt
 19
 normal! 0
-lcd ~/dev/the-cherno/opengl/ep18-blending
-tabedit ~/dev/the-cherno/opengl/ep18-blending/IndexBuffer.h
+lcd ~/dev/the-cherno/opengl/ep19-math
+tabedit ~/dev/the-cherno/opengl/ep19-math/IndexBuffer.h
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -164,7 +164,7 @@ exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
 argglobal
 2argu
-if bufexists('~/dev/the-cherno/opengl/ep18-blending/IndexBuffer.h') | buffer ~/dev/the-cherno/opengl/ep18-blending/IndexBuffer.h | else | edit ~/dev/the-cherno/opengl/ep18-blending/IndexBuffer.h | endif
+if bufexists('~/dev/the-cherno/opengl/ep19-math/IndexBuffer.h') | buffer ~/dev/the-cherno/opengl/ep19-math/IndexBuffer.h | else | edit ~/dev/the-cherno/opengl/ep19-math/IndexBuffer.h | endif
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -199,7 +199,7 @@ normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
-tabedit ~/dev/the-cherno/opengl/ep18-blending/Renderer.h
+tabedit ~/dev/the-cherno/opengl/ep19-math/Renderer.h
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -246,7 +246,7 @@ normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
-tabedit ~/dev/the-cherno/opengl/ep18-blending/VertexArray.h
+tabedit ~/dev/the-cherno/opengl/ep19-math/VertexArray.h
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -259,7 +259,7 @@ exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
 argglobal
 7argu
-if bufexists('~/dev/the-cherno/opengl/ep18-blending/VertexArray.h') | buffer ~/dev/the-cherno/opengl/ep18-blending/VertexArray.h | else | edit ~/dev/the-cherno/opengl/ep18-blending/VertexArray.h | endif
+if bufexists('~/dev/the-cherno/opengl/ep19-math/VertexArray.h') | buffer ~/dev/the-cherno/opengl/ep19-math/VertexArray.h | else | edit ~/dev/the-cherno/opengl/ep19-math/VertexArray.h | endif
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -294,7 +294,7 @@ normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
-tabedit ~/dev/the-cherno/opengl/ep18-blending/VertexBuffer.h
+tabedit ~/dev/the-cherno/opengl/ep19-math/VertexBuffer.h
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -307,7 +307,7 @@ exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
 argglobal
 9argu
-if bufexists('~/dev/the-cherno/opengl/ep18-blending/VertexBuffer.h') | buffer ~/dev/the-cherno/opengl/ep18-blending/VertexBuffer.h | else | edit ~/dev/the-cherno/opengl/ep18-blending/VertexBuffer.h | endif
+if bufexists('~/dev/the-cherno/opengl/ep19-math/VertexBuffer.h') | buffer ~/dev/the-cherno/opengl/ep19-math/VertexBuffer.h | else | edit ~/dev/the-cherno/opengl/ep19-math/VertexBuffer.h | endif
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -342,7 +342,7 @@ normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
-tabedit ~/dev/the-cherno/opengl/ep18-blending/VertexBufferLayout.h
+tabedit ~/dev/the-cherno/opengl/ep19-math/VertexBufferLayout.h
 set splitbelow splitright
 set nosplitright
 wincmd t
@@ -365,7 +365,7 @@ exe s:l
 normal! zt
 17
 normal! 09|
-tabedit ~/dev/the-cherno/opengl/ep18-blending/vendor/stb_image/stb_image.h
+tabedit ~/dev/the-cherno/opengl/ep19-math/vendor/stb_image/stb_image.h
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -378,7 +378,7 @@ exe '1resize ' . ((&lines * 46 + 30) / 61)
 exe '2resize ' . ((&lines * 10 + 30) / 61)
 argglobal
 12argu
-if bufexists('~/dev/the-cherno/opengl/ep18-blending/vendor/stb_image/stb_image.h') | buffer ~/dev/the-cherno/opengl/ep18-blending/vendor/stb_image/stb_image.h | else | edit ~/dev/the-cherno/opengl/ep18-blending/vendor/stb_image/stb_image.h | endif
+if bufexists('~/dev/the-cherno/opengl/ep19-math/vendor/stb_image/stb_image.h') | buffer ~/dev/the-cherno/opengl/ep19-math/vendor/stb_image/stb_image.h | else | edit ~/dev/the-cherno/opengl/ep19-math/vendor/stb_image/stb_image.h | endif
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -395,11 +395,11 @@ exe s:l
 normal! zt
 365
 normal! 018|
-lcd ~/dev/the-cherno/opengl/ep18-blending
+lcd ~/dev/the-cherno/opengl/ep19-math
 wincmd w
 argglobal
 12argu
-if bufexists('~/dev/the-cherno/opengl/ep18-blending/vendor/stb_image/stb_image.cpp') | buffer ~/dev/the-cherno/opengl/ep18-blending/vendor/stb_image/stb_image.cpp | else | edit ~/dev/the-cherno/opengl/ep18-blending/vendor/stb_image/stb_image.cpp | endif
+if bufexists('~/dev/the-cherno/opengl/ep19-math/vendor/stb_image/stb_image.cpp') | buffer ~/dev/the-cherno/opengl/ep19-math/vendor/stb_image/stb_image.cpp | else | edit ~/dev/the-cherno/opengl/ep19-math/vendor/stb_image/stb_image.cpp | endif
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -414,11 +414,11 @@ exe s:l
 normal! zt
 2
 normal! 02|
-lcd ~/dev/the-cherno/opengl/ep18-blending
+lcd ~/dev/the-cherno/opengl/ep19-math
 wincmd w
 exe '1resize ' . ((&lines * 46 + 30) / 61)
 exe '2resize ' . ((&lines * 10 + 30) / 61)
-tabedit ~/dev/the-cherno/opengl/ep18-blending/Texture.h
+tabedit ~/dev/the-cherno/opengl/ep19-math/Texture.h
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -430,7 +430,7 @@ set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
 argglobal
-if bufexists('~/dev/the-cherno/opengl/ep18-blending/Texture.h') | buffer ~/dev/the-cherno/opengl/ep18-blending/Texture.h | else | edit ~/dev/the-cherno/opengl/ep18-blending/Texture.h | endif
+if bufexists('~/dev/the-cherno/opengl/ep19-math/Texture.h') | buffer ~/dev/the-cherno/opengl/ep19-math/Texture.h | else | edit ~/dev/the-cherno/opengl/ep19-math/Texture.h | endif
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -445,10 +445,10 @@ exe s:l
 normal! zt
 12
 normal! 0
-lcd ~/dev/the-cherno/opengl/ep18-blending
+lcd ~/dev/the-cherno/opengl/ep19-math
 wincmd w
 argglobal
-if bufexists('~/dev/the-cherno/opengl/ep18-blending/Texture.cpp') | buffer ~/dev/the-cherno/opengl/ep18-blending/Texture.cpp | else | edit ~/dev/the-cherno/opengl/ep18-blending/Texture.cpp | endif
+if bufexists('~/dev/the-cherno/opengl/ep19-math/Texture.cpp') | buffer ~/dev/the-cherno/opengl/ep19-math/Texture.cpp | else | edit ~/dev/the-cherno/opengl/ep19-math/Texture.cpp | endif
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -463,11 +463,11 @@ exe s:l
 normal! zt
 25
 normal! 019|
-lcd ~/dev/the-cherno/opengl/ep18-blending
+lcd ~/dev/the-cherno/opengl/ep19-math
 wincmd w
 exe '1resize ' . ((&lines * 28 + 30) / 61)
 exe '2resize ' . ((&lines * 28 + 30) / 61)
-tabedit ~/dev/the-cherno/opengl/ep18-blending/Makefile
+tabedit ~/dev/the-cherno/opengl/ep19-math/Makefile
 set splitbelow splitright
 wincmd _ | wincmd |
 split
