@@ -36,7 +36,10 @@ release: app
 
 .PHONY: clean
 clean:
-	rm -f *.o app
+	rm -f *.o
+	rm -f vendor/*/*.o
+	rm -f app
+	rm -f imgui.ini
 
 .PHONY: debugger
 debugger: debug
