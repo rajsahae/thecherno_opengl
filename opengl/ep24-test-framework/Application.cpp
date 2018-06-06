@@ -9,7 +9,8 @@
 #include "imgui.h"
 #include "imgui_impl_glfw_gl3.h"
 
-#include "tests/TestClearColor.h"
+// #include "tests/TestClearColor.h"
+#include "tests/TestTriangle.h"
 #include "Debug.h"
 
 GLFWwindow* InitWindow()
@@ -70,7 +71,8 @@ int main( void )
     ImGui_ImplGlfwGL3_Init(window, true);
     ImGui::StyleColorsDark();
 
-    test::TestClearColor test;
+    // test::TestClearColor test;
+    test::TestTriangle test;
 
     do {
         test.OnUpdate(0.0f);
