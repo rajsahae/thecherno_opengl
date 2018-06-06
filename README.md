@@ -1,5 +1,8 @@
 # the-cherno
-My code-along on TheCherno tutorials
+My code-along for TheCherno tutorials.
+The code here is intended to run on MacOS.
+Any differences between TheCherno's code and mine is likely a result of my compilation environment.
+YMMV.
 
 Currently working through [TheCherno's OpenGL tutorial](https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2 "TheCherno OpenGL Tutorial").
 
