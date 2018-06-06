@@ -6,18 +6,11 @@
 
 #include <iostream>
 
-#include "VertexBuffer.h"
-#include "VertexArray.h"
-#include "IndexBuffer.h"
-#include "Shader.h"
-#include "Renderer.h"
-#include "Texture.h"
-
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-
 #include "imgui.h"
 #include "imgui_impl_glfw_gl3.h"
+
+#include "tests/TestClearColor.h"
+#include "Debug.h"
 
 GLFWwindow* InitWindow()
 {
@@ -69,104 +62,32 @@ int main( void )
     if (!window)
         return -1;
 
-    float positions[] = {
-      -50.0f, -50.0f, 0.0f, 0.0f, // 0
-       50.0f, -50.0f, 1.0f, 0.0f, // 1
-       50.0f,  50.0f, 1.0f, 1.0f, // 2
-      -50.0f,  50.0f, 0.0f, 1.0f  // 3
-    };
-
-    unsigned int indices[] = {
-        0, 1, 2,
-        2, 3, 0
-    };
-
     GLCall( glEnable(GL_BLEND) );
     GLCall( glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) );
 
-    {
-        VertexArray va;
-        VertexBuffer vb(positions, 4 * 4 * sizeof(float));
-        IndexBuffer ib(indices, 6);
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGui_ImplGlfwGL3_Init(window, true);
+    ImGui::StyleColorsDark();
 
-        // projection matrix
-        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
+    test::TestClearColor test;
 
-        // view matrix
-        glm::mat4 ident = glm::mat4(1.0f);
-        glm::vec3 trvec = glm::vec3(0, 0, 0);
-        glm::mat4 view = glm::translate(ident, trvec);
+    do {
+        test.OnUpdate(0.0f);
+        test.OnRender();
 
-        VertexBufferLayout layout;
-        layout.AddFloat(2);
-        layout.AddFloat(2);
+        ImGui_ImplGlfwGL3_NewFrame();
 
-        va.AddBuffer(vb, layout);
+        test.OnImGuiRender();
+        ImGui::Render();
+        ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 
-        Shader shader("res/shaders/Basic.shader");
-        shader.Bind();
-        shader.SetUniform4f("u_Color", 0.0f, 0.3f, 0.8f, 1.0f);
+        glfwSwapBuffers(window);
+        glfwPollEvents();
 
-        Texture texture("res/textures/phone.png");
-        texture.Bind();
-        shader.SetUniform1i("u_Texture", 0);
-
-        float red = 0.0f;
-        float step = 0.05f;
-
-        Renderer renderer;
-
-        IMGUI_CHECKVERSION();
-        ImGui::CreateContext();
-        ImGui_ImplGlfwGL3_Init(window, true);
-        ImGui::StyleColorsDark();
-
-        glm::vec3 translationA(200, 200, 0);
-        glm::vec3 translationB(400, 200, 0);
-
-        do {
-            renderer.Clear();
-
-            ImGui_ImplGlfwGL3_NewFrame();
-
-            {
-                glm::mat4 model = glm::translate(glm::mat4(1.0f), translationA);
-                glm::mat4 mvp = proj * view * model;
-                shader.Bind();
-                shader.SetUniformMat4f("u_MVP", mvp);
-                renderer.Draw(va, ib, shader);
-            }
-
-            {
-                glm::mat4 model = glm::translate(glm::mat4(1.0f), translationB);
-                glm::mat4 mvp = proj * view * model;
-                shader.Bind();
-                shader.SetUniformMat4f("u_MVP", mvp);
-                renderer.Draw(va, ib, shader);
-            }
-
-            {
-                ImGui::SliderFloat3("TranslationA", &translationA.x, 0.0f, 960.0f);
-                ImGui::SliderFloat3("TranslationB", &translationB.x, 0.0f, 960.0f);
-                ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-            }
-
-            ImGui::Render();
-            ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
-
-            // Swap buffers
-            glfwSwapBuffers(window);
-            glfwPollEvents();
-
-            // increment red
-            if (red < 0.0f || red > 1.0f)
-                step *= -1.0;
-            red += step;
-
-        } // Check if the ESC key was pressed or the window was closed
-        while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
-                glfwWindowShouldClose(window) == 0 );
-    }
+    } // Check if the ESC key was pressed or the window was closed
+    while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
+            glfwWindowShouldClose(window) == 0 );
 
     // Close OpenGL window and terminate GLFW
     ImGui_ImplGlfwGL3_Shutdown();

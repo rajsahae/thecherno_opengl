@@ -17,8 +17,8 @@ LDFLAGS+=-lGLEW
 
 SOURCES=$(wildcard *.cpp)
 SOURCES+=$(wildcard vendor/*/*.cpp)
+SOURCES+=$(wildcard tests/*.cpp)
 OBJECTS=$(patsubst %.cpp, %.o, $(SOURCES))
-
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $^
@@ -40,6 +40,7 @@ clean:
 	rm -f vendor/*/*.o
 	rm -f app
 	rm -f imgui.ini
+	rm -f tests/*.o
 
 .PHONY: debugger
 debugger: debug
