@@ -40,6 +40,16 @@ namespace test
 
     void TestUniform::OnUpdate(float deltaTime)
     {
+        if (m_Oscillate)
+        {
+            // increment red
+            float *red = m_ObjectColor;
+            if (*red < 0.0f)
+                m_Direction = 1;
+            if (*red > 1.0f)
+                m_Direction = -1;
+            *red += m_Step * m_Direction;
+        }
     }
 
     void TestUniform::OnRender()
@@ -55,17 +65,6 @@ namespace test
                               m_ObjectColor[3]);
 
         m_renderer.Draw(m_va, m_ib, m_shader);
-
-        if (m_Oscillate)
-        {
-            // increment red
-            float *red = m_ObjectColor;
-            if (*red < 0.0f)
-                m_Direction = 1;
-            if (*red > 1.0f)
-                m_Direction = -1;
-            *red += m_Step * m_Direction;
-        }
     }
 
     void TestUniform::OnImGuiRender()
@@ -73,9 +72,6 @@ namespace test
         ImGui::ColorEdit4("Clear Color", m_ClearColor);
         ImGui::ColorEdit4("Object Color", m_ObjectColor);
         ImGui::Checkbox("Oscillate Red", &m_Oscillate);
-        ImGui::InputFloat("Red Step", &m_Step, 0.001f, 0.001f);
-
-        if (m_Step < 0.0f)
-            m_Step = 0.0f;
+        ImGui::SliderFloat("Red Oscillation Speed", &m_Step, 0.0f, 0.25f);
     }
 };
