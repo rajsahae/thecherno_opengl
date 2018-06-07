@@ -73,17 +73,39 @@ int main( void )
     ImGui_ImplGlfwGL3_Init(window, true);
     ImGui::StyleColorsDark();
 
-    // test::TestClearColor test;
-    // test::TestTriangle test;
-    test::TestUniform test;
+    int currentSelection = -1;
+    int radioSelection = 0;
+    test::Test *test;
 
     do {
-        test.OnUpdate(0.0f);
-        test.OnRender();
-
         ImGui_ImplGlfwGL3_NewFrame();
+        {
+            ImGui::RadioButton("TestClearColor", &radioSelection, 0); ImGui::SameLine();
+            ImGui::RadioButton("TestTriangle",   &radioSelection, 1); ImGui::SameLine();
+            ImGui::RadioButton("TestUniform",    &radioSelection, 2);
+        }
 
-        test.OnImGuiRender();
+        if (currentSelection != radioSelection)
+        {
+            switch(radioSelection)
+            {
+                case 0 : delete test;
+                         test = new test::TestClearColor();
+                         break;
+                case 1 : delete test;
+                         test = new test::TestTriangle();
+                         break;
+                case 2 : delete test;
+                         test = new test::TestUniform();
+                         break;
+            }
+            currentSelection = radioSelection;
+        }
+
+        test->OnUpdate(0.0f);
+        test->OnRender();
+        test->OnImGuiRender();
+
         ImGui::Render();
         ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 
