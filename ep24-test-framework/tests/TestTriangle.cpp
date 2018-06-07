@@ -17,12 +17,8 @@ namespace test
         m_layout(),
         m_shader("res/shaders/Simple.shader")
     {
-
-        m_va.Bind();
-        m_vb.Bind();
         m_layout.AddFloat(2);
         m_va.AddBuffer(m_vb, m_layout);
-        m_shader.Bind();
     }
 
     TestTriangle::~TestTriangle()
