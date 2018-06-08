@@ -40,6 +40,9 @@ namespace test
 
     void TestUniform::OnUpdate(float deltaTime)
     {
+        // Ideally we would actually specify a "rate" instead of a step, and then we would normalize the points stepped based on the
+        // input deltaTime, i.e. if rate = 100 points / sec, or 100 points / 1000 ms, or 0.1 points / ms, then we pass in delta time
+        // in ms and the points we should step are 0.1 * deltaTime * direction.
         if (m_Oscillate)
         {
             // increment red

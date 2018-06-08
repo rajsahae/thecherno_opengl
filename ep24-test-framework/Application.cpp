@@ -12,6 +12,7 @@
 #include "tests/TestClearColor.h"
 #include "tests/TestTriangle.h"
 #include "tests/TestUniform.h"
+#include "tests/TestMultipleObjects.h"
 
 #include "Debug.h"
 
@@ -80,9 +81,11 @@ int main( void )
     do {
         ImGui_ImplGlfwGL3_NewFrame();
         {
-            ImGui::RadioButton("TestClearColor", &radioSelection, 0); ImGui::SameLine();
-            ImGui::RadioButton("TestTriangle",   &radioSelection, 1); ImGui::SameLine();
-            ImGui::RadioButton("TestUniform",    &radioSelection, 2);
+            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+            ImGui::RadioButton("ClearColor",      &radioSelection, 0); ImGui::SameLine();
+            ImGui::RadioButton("Triangle",        &radioSelection, 1); ImGui::SameLine();
+            ImGui::RadioButton("Uniform",         &radioSelection, 2); ImGui::SameLine();
+            ImGui::RadioButton("MultipleObjects", &radioSelection, 3);
         }
 
         if (currentSelection != radioSelection)
@@ -97,6 +100,9 @@ int main( void )
                          break;
                 case 2 : delete test;
                          test = new test::TestUniform();
+                         break;
+                case 3 : delete test;
+                         test = new test::TestMultipleObjects();
                          break;
             }
             currentSelection = radioSelection;
