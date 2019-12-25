@@ -52,6 +52,7 @@ GLFWwindow* InitWindow()
         return nullptr;
     }
 
+    std::cout << "Using GLEW Version: " << glewGetString(GLEW_VERSION) << std::endl;
     std::cout << "Using GL Version: " << glGetString(GL_VERSION) << std::endl;
 
     // Ensure we can capture the escape key being pressed below
