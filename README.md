@@ -1,7 +1,8 @@
 # the-cherno
 My code-along for TheCherno tutorials.
-The code here is intended to run on MacOS. If you want to compile on \*Nix or Windows you will need to modify the Makefiles in each
-episode directory.
+The code here is intended to run on MacOS.
+If you want to compile on \*Nix, see the branch named **linux**.
+For Windows you will need to modify the Makefiles in each episode directory for your environment.
 Any differences between TheCherno's code and mine is likely a result of my compilation environment.
 YMMV.
 
