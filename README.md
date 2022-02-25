@@ -6,7 +6,6 @@ My code-along for TheCherno tutorials.
 * ep02
 
 The code here is intended to run on Linux. If you want to compile on MacOS, see the corresponding branch named MacOS.
-I also ported to using **glad** instead of **glew**, just for fun.
 For Windows you will need to come up with a different build system on your own.
 
 Any differences between TheCherno's code and mine is likely a result of my compilation environment.
@@ -18,11 +17,9 @@ To run the resulting app, run `make run`.
 
 All episodes compile into a binary named **app**.
 
-I chose to install glfw and glut dependencies via package manager instead of moving them into the repo. To get those, run:
+I chose to install glfw , glew and glut dependencies via package manager instead of moving them into the repo. To get those, run:
 
-    sudo apt install libglfw3-dev freeglut3-dev
-
-**glad** is copied into the source code, in the **external** folder.
+    sudo apt install libglfw3-dev freeglut3-dev libglew-dev
 
 At some point, I may bring those libraries in or try to add them as meson subprojects.
 
