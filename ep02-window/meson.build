@@ -1,4 +1,4 @@
-project('ep02', 'cpp')
+project('ep02-window', 'cpp')
 
 gl = dependency('gl')
 glfw3 = dependency('glfw3')

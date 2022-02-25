@@ -1,4 +1,4 @@
-project('ep03-modern-opengl', 'cpp')
+project('ep04-vertex-buffers', 'cpp')
 
 gl = dependency('gl')
 glfw3 = dependency('glfw3')
