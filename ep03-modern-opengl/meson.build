@@ -1,4 +1,4 @@
-project('ep02', 'cpp')
+project('ep03', 'cpp')
 
 gl = dependency('gl')
 glfw3 = dependency('glfw3')
