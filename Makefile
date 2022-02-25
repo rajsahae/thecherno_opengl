@@ -5,7 +5,7 @@ default: build
 ${BUILD_DIR}/build.ninja:
 	meson setup ${BUILD_DIR}
 
-.PHONY: clean reset build run
+.PHONY: clean reset build
 clean:
 	ninja -C ${BUILD_DIR} clean
 
@@ -14,6 +14,3 @@ reset:
 
 build: | ${BUILD_DIR}/build.ninja
 	ninja -C ${BUILD_DIR}
-
-run:
-	${BUILD_DIR}/app

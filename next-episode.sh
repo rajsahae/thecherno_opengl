@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ROOT=$(dirname "$0")
+
 latest_episode=$1
 next_episode=$2
 
@@ -11,5 +13,6 @@ next_name=$(basename "$next_path")
 
 echo Copying "$latest_name -> $next_name"
 cp --recursive "$latest_path" "$next_path"
-rm -rf "$next_path"/{build,nbproject}
-sed --in-place "s/$latest_name/$next_name/g" "$next_path/meson.build"
+if ! grep -q "$next_name" "$ROOT/meson.build" ;  then
+  echo "subdir('$next_name')" >> "$ROOT/meson.build"
+fi
