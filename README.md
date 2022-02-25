@@ -1,6 +1,10 @@
 # the-cherno
 My code-along for TheCherno tutorials.
 
+**THIS PORT IS STILL A WORK IN PROGRESS**
+## Episodes ported
+* ep02
+
 The code here is intended to run on Linux. If you want to compile on MacOS, see the corresponding branch named MacOS.
 I also ported to using **glad** instead of **glew**, just for fun.
 For Windows you will need to come up with a different build system on your own.
