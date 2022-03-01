@@ -8,6 +8,7 @@ My code-along for TheCherno tutorials.
 * ep04
 * ep05
 * ep07
+* ep08
 
 The code here is intended to run on Linux. If you want to compile on MacOS, see the corresponding branch named MacOS.
 For Windows you will need to come up with a different build system on your own.
